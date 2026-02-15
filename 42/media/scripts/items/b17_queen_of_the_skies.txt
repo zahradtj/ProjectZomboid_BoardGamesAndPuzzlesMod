@@ -1,0 +1,32 @@
+module BoardGamesAndPuzzlesMod
+{
+    imports
+    {
+        Base
+    }
+
+    model B17QueenOfTheSkies
+    {
+        mesh = WorldItems/SmallBox,
+        texture = box/box_B17QueenOfTheSkies,
+        scale = 0.6,
+    }
+
+    item B17QueenOfTheSkies
+    {
+        Type = Normal,
+        ItemType = base:normal,
+        DisplayName = B-17 Queen of the Skies,
+        DisplayCategory = Entertainment,
+        Icon = B17QueenOfTheSkies,
+        Weight = 2.3,
+        LootCategory = Other,
+        SubCategory = BoardGame,
+        CanSpawnAsLoot = True,
+        RequiresEquippedBothHands = False,
+        UseWhileEquipped = False,
+        UseWhileUnequipped = True,
+        Tooltip = "A solo-friendly WWII bomber campaign game with charts and counters.",
+        WorldStaticModel = B17QueenOfTheSkies,
+    }
+}

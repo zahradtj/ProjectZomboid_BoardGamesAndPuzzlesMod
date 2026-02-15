@@ -1,0 +1,32 @@
+module BoardGamesAndPuzzlesMod
+{
+    imports
+    {
+        Base
+    }
+
+    model CandyLand
+    {
+        mesh = WorldItems/SmallBox,
+        texture = box/box_CandyLand,
+        scale = 0.6,
+    }
+
+    item CandyLand
+    {
+        Type = Normal,
+        ItemType = base:normal,
+        DisplayName = Candy Land,
+        DisplayCategory = Entertainment,
+        Icon = CandyLand,
+        Weight = 1.1,
+        LootCategory = Other,
+        SubCategory = BoardGame,
+        CanSpawnAsLoot = True,
+        RequiresEquippedBothHands = False,
+        UseWhileEquipped = False,
+        UseWhileUnequipped = True,
+        Tooltip = "Color cards and a sweet path. No reading required.",
+        WorldStaticModel = CandyLand,
+    }
+}

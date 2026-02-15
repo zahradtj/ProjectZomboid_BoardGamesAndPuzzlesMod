@@ -1,0 +1,32 @@
+module BoardGamesAndPuzzlesMod
+{
+    imports
+    {
+        Base
+    }
+
+    model Clue
+    {
+        mesh = WorldItems/SmallBox,
+        texture = box/box_Clue,
+        scale = 0.6,
+    }
+
+    item Clue
+    {
+        Type = Normal,
+        ItemType = base:normal,
+        DisplayName = Clue,
+        DisplayCategory = Entertainment,
+        Icon = Clue,
+        Weight = 1.9,
+        LootCategory = Other,
+        SubCategory = BoardGame,
+        CanSpawnAsLoot = True,
+        RequiresEquippedBothHands = False,
+        UseWhileEquipped = False,
+        UseWhileUnequipped = True,
+        Tooltip = "A murder mystery deduction game with cards and suspects.",
+        WorldStaticModel = Clue,
+    }
+}

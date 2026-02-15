@@ -1,0 +1,32 @@
+module BoardGamesAndPuzzlesMod
+{
+    imports
+    {
+        Base
+    }
+
+    model Backgammon
+    {
+        mesh = WorldItems/SmallBox,
+        texture = box/box_Backgammon,
+        scale = 0.6,
+    }
+
+    item Backgammon
+    {
+        Type = Normal,
+        ItemType = base:normal,
+        DisplayName = Backgammon,
+        DisplayCategory = Entertainment,
+        Icon = Backgammon,
+        Weight = 1.8,
+        LootCategory = Other,
+        SubCategory = BoardGame,
+        CanSpawnAsLoot = True,
+        RequiresEquippedBothHands = False,
+        UseWhileEquipped = False,
+        UseWhileUnequipped = True,
+        Tooltip = "Classic dice-and-checker strategy. Often a folding case.",
+        WorldStaticModel = Backgammon,
+    }
+}

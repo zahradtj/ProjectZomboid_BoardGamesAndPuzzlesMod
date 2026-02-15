@@ -1,0 +1,32 @@
+module BoardGamesAndPuzzlesMod
+{
+    imports
+    {
+        Base
+    }
+
+    model YahtzeeGame
+    {
+        mesh = WorldItems/Cylinder,
+        texture = box/box_Yahtzee,
+        scale = 0.4,
+    }
+
+    item YahtzeeGame
+    {
+        Type = Normal,
+        ItemType = base:normal,
+        DisplayName = Yahtzee,
+        DisplayCategory = Entertainment,
+        Icon = Yahtzee,
+        Weight = 0.8,
+        LootCategory = Other,
+        SubCategory = BoardGame,
+        CanSpawnAsLoot = True,
+        RequiresEquippedBothHands = False,
+        UseWhileEquipped = False,
+        UseWhileUnequipped = True,
+        Tooltip = "Dice and scorecards. Quick to play and easy to learn.",
+        WorldStaticModel = YahtzeeGame,
+    }
+}

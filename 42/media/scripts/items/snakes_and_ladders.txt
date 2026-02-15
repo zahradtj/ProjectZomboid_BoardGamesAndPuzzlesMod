@@ -1,0 +1,32 @@
+module BoardGamesAndPuzzlesMod
+{
+    imports
+    {
+        Base
+    }
+
+    model SnakesAndLadders
+    {
+        mesh = WorldItems/SmallBox,
+        texture = box/box_SnakesAndLadders,
+        scale = 0.6,
+    }
+
+    item SnakesAndLadders
+    {
+        Type = Normal,
+        ItemType = base:normal,
+        DisplayName = Snakes and Ladders,
+        DisplayCategory = Entertainment,
+        Icon = SnakesAndLadders,
+        Weight = 1.0,
+        LootCategory = Other,
+        SubCategory = BoardGame,
+        CanSpawnAsLoot = True,
+        RequiresEquippedBothHands = False,
+        UseWhileEquipped = False,
+        UseWhileUnequipped = True,
+        Tooltip = "Simple roll-and-move luck game. Great for kids.",
+        WorldStaticModel = SnakesAndLadders,
+    }
+}

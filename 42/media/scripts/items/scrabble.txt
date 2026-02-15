@@ -1,0 +1,32 @@
+module BoardGamesAndPuzzlesMod
+{
+    imports
+    {
+        Base
+    }
+
+    model Scrabble
+    {
+        mesh = WorldItems/SmallBox,
+        texture = box/box_Scrabble,
+        scale = 0.6,
+    }
+
+    item Scrabble
+    {
+        Type = Normal,
+        ItemType = base:normal,
+        DisplayName = Scrabble,
+        DisplayCategory = Entertainment,
+        Icon = Scrabble,
+        Weight = 2.2,
+        LootCategory = Other,
+        SubCategory = BoardGame,
+        CanSpawnAsLoot = True,
+        RequiresEquippedBothHands = False,
+        UseWhileEquipped = False,
+        UseWhileUnequipped = True,
+        Tooltip = "Tile-laying word game. Heavy board and lots of tiles.",
+        WorldStaticModel = Scrabble,
+    }
+}

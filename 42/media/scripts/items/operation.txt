@@ -1,0 +1,33 @@
+module BoardGamesAndPuzzlesMod
+{
+    imports
+    {
+        Base
+    }
+
+    model Operation
+    {
+        mesh = WorldItems/SmallBox,
+        texture = box/box_Operation,
+        scale = 0.6,
+    }
+
+    item Operation
+    {
+        Type = Normal,
+        ItemType = base:normal,
+        DisplayName = Operation,
+        DisplayCategory = Entertainment,
+        Icon = Operation,
+        Weight = 1.6,
+        LootCategory = Other,
+        SubCategory = BoardGame,
+        CanSpawnAsLoot = True,
+        RequiresEquippedBothHands = False,
+        UseWhileEquipped = False,
+        UseWhileUnequipped = True,
+        UsesBattery = True,
+        Tooltip = "A buzzy dexterity game. Careful hands win.",
+        WorldStaticModel = Operation,
+    }
+}

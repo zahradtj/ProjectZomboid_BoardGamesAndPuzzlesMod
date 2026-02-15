@@ -1,0 +1,32 @@
+module BoardGamesAndPuzzlesMod
+{
+    imports
+    {
+        Base
+    }
+
+    model Go
+    {
+        mesh = Worlditems/SquareBox,
+        texture = box/box_Go,
+        scale = 0.6,
+    }
+
+    item Go
+    {
+        Type = Normal,
+        ItemType = base:normal,
+        DisplayName = Go,
+        DisplayCategory = Entertainment,
+        Icon = Go,
+        Weight = 2.1,
+        LootCategory = Other,
+        SubCategory = BoardGame,
+        CanSpawnAsLoot = True,
+        RequiresEquippedBothHands = False,
+        UseWhileEquipped = False,
+        UseWhileUnequipped = True,
+        Tooltip = "Deep abstract strategy with black and white stones.",
+        WorldStaticModel = Go,
+    }
+}

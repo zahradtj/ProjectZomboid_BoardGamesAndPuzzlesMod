@@ -1,0 +1,32 @@
+module BoardGamesAndPuzzlesMod
+{
+    imports
+    {
+        Base
+    }
+
+    model Boggle
+    {
+        mesh = Worlditems/SquareBox,
+        texture = box/box_Boggle,
+        scale = 0.6,
+    }
+
+    item Boggle
+    {
+        Type = Normal,
+        ItemType = base:normal,
+        DisplayName = Boggle,
+        DisplayCategory = Entertainment,
+        Icon = Boggle,
+        Weight = 0.9,
+        LootCategory = Other,
+        SubCategory = BoardGame,
+        CanSpawnAsLoot = True,
+        RequiresEquippedBothHands = False,
+        UseWhileEquipped = False,
+        UseWhileUnequipped = True,
+        Tooltip = "Word-search in a shaking letter grid. Fast rounds.",
+        WorldStaticModel = Boggle,
+    }
+}

@@ -1,0 +1,32 @@
+module BoardGamesAndPuzzlesMod
+{
+    imports
+    {
+        Base
+    }
+
+    model TheGameOfLife
+    {
+        mesh = WorldItems/SmallBox,
+        texture = box/box_TheGameOfLife,
+        scale = 0.6,
+    }
+
+    item TheGameOfLife
+    {
+        Type = Normal,
+        ItemType = base:normal,
+        DisplayName = The Game of Life,
+        DisplayCategory = Entertainment,
+        Icon = TheGameOfLife,
+        Weight = 2.6,
+        LootCategory = Other,
+        SubCategory = BoardGame,
+        CanSpawnAsLoot = True,
+        RequiresEquippedBothHands = False,
+        UseWhileEquipped = False,
+        UseWhileUnequipped = True,
+        Tooltip = "A big family board with pieces and life choices. Box is bulky.",
+        WorldStaticModel = TheGameOfLife,
+    }
+}

@@ -1,0 +1,32 @@
+module BoardGamesAndPuzzlesMod
+{
+    imports
+    {
+        Base
+    }
+
+    model Mastermind
+    {
+        mesh = WorldItems/SmallBox,
+        texture = box/box_Mastermind,
+        scale = 0.6,
+    }
+
+    item Mastermind
+    {
+        Type = Normal,
+        ItemType = base:normal,
+        DisplayName = Mastermind,
+        DisplayCategory = Entertainment,
+        Icon = Mastermind,
+        Weight = 1.0,
+        LootCategory = Other,
+        SubCategory = BoardGame,
+        CanSpawnAsLoot = True,
+        RequiresEquippedBothHands = False,
+        UseWhileEquipped = False,
+        UseWhileUnequipped = True,
+        Tooltip = "Code-breaking logic game with colored pegs. Compact and tidy.",
+        WorldStaticModel = Mastermind,
+    }
+}

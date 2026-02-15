@@ -1,0 +1,32 @@
+module BoardGamesAndPuzzlesMod
+{
+    imports
+    {
+        Base
+    }
+
+    model Trouble
+    {
+        mesh = Worlditems/SquareBox,
+        texture = box/box_Trouble,
+        scale = 0.6,
+    }
+
+    item Trouble
+    {
+        Type = Normal,
+        ItemType = base:normal,
+        DisplayName = Trouble,
+        DisplayCategory = Entertainment,
+        Icon = Trouble,
+        Weight = 1.5,
+        LootCategory = Other,
+        SubCategory = BoardGame,
+        CanSpawnAsLoot = True,
+        RequiresEquippedBothHands = False,
+        UseWhileEquipped = False,
+        UseWhileUnequipped = True,
+        Tooltip = "Pop-o-matic dice and a race to home. Loud and simple fun.",
+        WorldStaticModel = Trouble,
+    }
+}

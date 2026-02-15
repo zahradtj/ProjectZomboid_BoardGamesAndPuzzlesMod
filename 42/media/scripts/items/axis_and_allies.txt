@@ -1,0 +1,35 @@
+module BoardGamesAndPuzzlesMod
+{
+    imports
+    {
+        Base
+    }
+
+    model AxisAndAllies
+    {
+        mesh = WorldItems/SmallBox,
+        texture = box/box_AxisAndAllies,
+        scale = 0.6,
+    }
+
+    item AxisAndAllies
+    {
+        Type = Normal,
+        ItemType = base:normal,
+        DisplayName = Axis & Allies,
+        DisplayCategory = Entertainment,
+        Icon = AxisAndAllies,
+        Weight = 4.0,
+        LootCategory = Other,
+        SubCategory = BoardGame,
+        CanSpawnAsLoot = True,
+        RequiresEquippedBothHands = False,
+        UseWhileEquipped = False,
+        UseWhileUnequipped = True,
+        Tooltip = "Big-box war strategy with many units. Heavy and time-consuming.",
+        WorldStaticModel = AxisAndAllies,
+        BoredomChange = -35,
+        UnhappyChange = -18,
+        StressChange = -12,
+    }
+}

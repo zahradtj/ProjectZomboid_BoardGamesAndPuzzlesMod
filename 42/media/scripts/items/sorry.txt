@@ -1,0 +1,32 @@
+module BoardGamesAndPuzzlesMod
+{
+    imports
+    {
+        Base
+    }
+
+    model Sorry
+    {
+        mesh = WorldItems/SmallBox,
+        texture = box/box_Sorry,
+        scale = 0.6,
+    }
+
+    item Sorry
+    {
+        Type = Normal,
+        ItemType = base:normal,
+        DisplayName = Sorry!,
+        DisplayCategory = Entertainment,
+        Icon = Sorry,
+        Weight = 1.6,
+        LootCategory = Other,
+        SubCategory = BoardGame,
+        CanSpawnAsLoot = True,
+        RequiresEquippedBothHands = False,
+        UseWhileEquipped = False,
+        UseWhileUnequipped = True,
+        Tooltip = "A simple race game with take-that moments.",
+        WorldStaticModel = Sorry,
+    }
+}

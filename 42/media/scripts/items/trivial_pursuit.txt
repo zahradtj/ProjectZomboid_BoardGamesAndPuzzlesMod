@@ -1,0 +1,32 @@
+module BoardGamesAndPuzzlesMod
+{
+    imports
+    {
+        Base
+    }
+
+    model TrivialPursuit
+    {
+        mesh = Worlditems/SquareBox,
+        texture = box/box_TrivialPursuit,
+        scale = 0.6,
+    }
+
+    item TrivialPursuit
+    {
+        Type = Normal,
+        ItemType = base:normal,
+        DisplayName = Trivial Pursuit,
+        DisplayCategory = Entertainment,
+        Icon = TrivialPursuit,
+        Weight = 2.2,
+        LootCategory = Other,
+        SubCategory = BoardGame,
+        CanSpawnAsLoot = True,
+        RequiresEquippedBothHands = False,
+        UseWhileEquipped = False,
+        UseWhileUnequipped = True,
+        Tooltip = "A heavy box of trivia cards and questions. Best with a group.",
+        WorldStaticModel = TrivialPursuit,
+    }
+}

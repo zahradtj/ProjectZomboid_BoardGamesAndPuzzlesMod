@@ -1,0 +1,32 @@
+module BoardGamesAndPuzzlesMod
+{
+    imports
+    {
+        Base
+    }
+
+    model Risk
+    {
+        mesh = WorldItems/SmallBox,
+        texture = box/box_Risk,
+        scale = 0.6,
+    }
+
+    item Risk
+    {
+        Type = Normal,
+        ItemType = base:normal,
+        DisplayName = Risk,
+        DisplayCategory = Entertainment,
+        Icon = Risk,
+        Weight = 2.4,
+        LootCategory = Other,
+        SubCategory = BoardGame,
+        CanSpawnAsLoot = True,
+        RequiresEquippedBothHands = False,
+        UseWhileEquipped = False,
+        UseWhileUnequipped = True,
+        Tooltip = "World conquest strategy. Long games with big decisions.",
+        WorldStaticModel = Risk,
+    }
+}

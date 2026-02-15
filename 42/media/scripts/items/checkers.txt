@@ -1,0 +1,32 @@
+module BoardGamesAndPuzzlesMod
+{
+    imports
+    {
+        Base
+    }
+
+    model Checkers
+    {
+        mesh = WorldItems/SmallBox,
+        texture = box/box_Checkers,
+        scale = 0.6,
+    }
+
+    item Checkers
+    {
+        Type = Normal,
+        ItemType = base:normal,
+        DisplayName = Checkers,
+        DisplayCategory = Entertainment,
+        Icon = Checkers,
+        Weight = 1.2,
+        LootCategory = Other,
+        SubCategory = BoardGame,
+        CanSpawnAsLoot = True,
+        RequiresEquippedBothHands = False,
+        UseWhileEquipped = False,
+        UseWhileUnequipped = True,
+        Tooltip = "Simple strategy for two. Often comes as a compact set.",
+        WorldStaticModel = Checkers,
+    }
+}

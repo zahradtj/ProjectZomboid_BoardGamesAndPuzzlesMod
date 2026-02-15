@@ -1,0 +1,32 @@
+module BoardGamesAndPuzzlesMod
+{
+    imports
+    {
+        Base
+    }
+
+    model Monopoly
+    {
+        mesh = WorldItems/SmallBox,
+        texture = box/box_Monopoly,
+        scale = 0.6,
+    }
+
+    item Monopoly
+    {
+        Type = Normal,
+        ItemType = base:normal,
+        DisplayName = Monopoly,
+        DisplayCategory = Entertainment,
+        Icon = Monopoly,
+        Weight = 2.8,
+        LootCategory = Other,
+        SubCategory = BoardGame,
+        CanSpawnAsLoot = True,
+        RequiresEquippedBothHands = False,
+        UseWhileEquipped = False,
+        UseWhileUnequipped = True,
+        Tooltip = "Property trading and money management. Lots of pieces and paper.",
+        WorldStaticModel = Monopoly,
+    }
+}

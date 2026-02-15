@@ -1,0 +1,14 @@
+module BoardGamesAndPuzzlesMod
+{
+    sound BGPM_OperationBuzz
+    {
+        category = UI,
+        is3D = true,
+
+        clip
+        {
+            file = media/sound/BGPM_OperationBuzz.ogg,
+            volume = 1,
+        }
+    }
+}

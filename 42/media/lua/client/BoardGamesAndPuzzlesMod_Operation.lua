@@ -1,5 +1,6 @@
 -- BoardGamesAndPuzzlesMod_OperationBatteryMenu.lua
 -- Adds: Insert Battery / Remove Battery / Play Operation to your Operation item.
+require "helpers/BoardGame_Thoughts"
 
 local OP_TYPE = "BoardGamesAndPuzzlesMod.Operation"
 local BATTERY_TYPE = "Base.Battery"
@@ -75,7 +76,6 @@ end
 local function playBuzz(playerObj)
     local emitter = playerObj:getEmitter()
     if emitter then
-        --local p = getSpecificPlayer(0)
         getSoundManager():PlayWorldSoundImpl("BoardGamesAndPuzzlesMod_OperationBuzz", false, playerObj:getX(), playerObj:getY(), playerObj:getZ(), 0, 8, 0.8, false)
 
 
@@ -95,6 +95,9 @@ function BoardGamesAndPuzzlesMod_Operation.doPlayOperation(playerObj, opItem)
     -- Chance to buzz while playing
     if ZombRand(100) < 18 then -- 18% chance; tune to taste -- TODO - increase this chance drastically if player is clumsy or wearing obnoxious gloves
         playBuzz(playerObj)
+        BoardGame_Thoughts.show(playerObj, OP_TYPE, "failure")
+    else
+        BoardGame_Thoughts.show(playerObj, OP_TYPE, "success")
     end
 
     setCharge(opItem, charge - DRAIN)

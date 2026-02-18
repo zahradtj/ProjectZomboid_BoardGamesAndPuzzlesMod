@@ -8,6 +8,9 @@ require "TimedActions/ISPlayBoardGameFromInventory"
 require "TimedActions/ISPlayBoardGameFromGround"
 require "BoardGamesAndPuzzlesMod_Operation"
 
+
+local BoardGame = require("BoardGame")
+
 local DEFAULT_GAME_BASIC = {
   illiterateAllowed = true,
   illiterateFailurePercent = 0,
@@ -31,7 +34,7 @@ local DEFAULT_GAME_HARD = {
 
 -- duration : 11250 = 1 hour
 local GAME_DEFS = {
-    ["BoardGamesAndPuzzlesMod.AxisAndAllies"] = {
+    [BoardGame.AxisAndAllies] = {
       default = DEFAULT_GAME_HARD,
       name = "Axis and Allies",
       duration = 67500,
@@ -42,7 +45,7 @@ local GAME_DEFS = {
       usesBattery = false,
     },
 
-    ["BoardGamesAndPuzzlesMod.B17QueenOfTheSkies"] = {
+    [BoardGame.B17QueenOfTheSkies] = {
       default = DEFAULT_GAME_HARD,
       name = "B17 Queen of the Skies",
       duration = 22500,
@@ -53,7 +56,7 @@ local GAME_DEFS = {
       usesBattery = false,
     },
 
-    ["BoardGamesAndPuzzlesMod.Backgammon"] = {
+    [BoardGame.Backgammon] = {
       default = DEFAULT_GAME_EASY,
       name = "Backgammon",
       duration = 5060,
@@ -64,7 +67,7 @@ local GAME_DEFS = {
       usesBattery = false,
     },
 
-    ["BoardGamesAndPuzzlesMod.Boggle"] = {
+    [BoardGame.Boggle] = {
       default = DEFAULT_GAME_HARD,
       name = "Boggle",
       duration = 3750,
@@ -75,7 +78,7 @@ local GAME_DEFS = {
       usesBattery = false,
     },
 
-    ["BoardGamesAndPuzzlesMod.CandyLand"] = {
+    [BoardGame.CandyLand] = {
       default = DEFAULT_GAME_BASIC,
       name = "Candy Land",
       duration = 5060,
@@ -86,7 +89,7 @@ local GAME_DEFS = {
       usesBattery = false,
     },
 
-    ["BoardGamesAndPuzzlesMod.Checkers"] = {
+    [BoardGame.Checkers] = {
       default = DEFAULT_GAME_BASIC,
       name = "Checkers",
       duration = 5060,
@@ -97,7 +100,7 @@ local GAME_DEFS = {
       usesBattery = false,
     },
 
-    ["BoardGamesAndPuzzlesMod.ChessSet"] = {
+    [BoardGame.ChessSet] = {
       default = DEFAULT_GAME_EASY,
       name = "Chess",
       duration = 11250,
@@ -108,7 +111,7 @@ local GAME_DEFS = {
       usesBattery = false,
     },
 
-    ["BoardGamesAndPuzzlesMod.Clue"] = {
+    [BoardGame.Clue] = {
       default = DEFAULT_GAME_MEDIUM,
       name = "Clue",
       duration = 16875,
@@ -119,7 +122,7 @@ local GAME_DEFS = {
       usesBattery = false,
     },
 
-    ["BoardGamesAndPuzzlesMod.Go"] = {
+    [BoardGame.Go] = {
       default = DEFAULT_GAME_BASIC,
       name = "Go",
       duration = 22500,
@@ -130,7 +133,7 @@ local GAME_DEFS = {
       usesBattery = false,
     },
 
-    ["BoardGamesAndPuzzlesMod.Mastermind"] = {
+    [BoardGame.Mastermind] = {
       default = DEFAULT_GAME_EASY,
       name = "Mastermind",
       duration = 5060,
@@ -141,7 +144,7 @@ local GAME_DEFS = {
       usesBattery = false,
     },
 
-    ["BoardGamesAndPuzzlesMod.Monopoly"] = {
+    [BoardGame.Monopoly] = {
       default = DEFAULT_GAME_MEDIUM,
       name = "Monopoly",
       duration = 45000,
@@ -152,7 +155,7 @@ local GAME_DEFS = {
       usesBattery = false,
     },
 
-    ["BoardGamesAndPuzzlesMod.Operation"] = {
+    [BoardGame.Operation] = {
       default = DEFAULT_GAME_BASIC,
       name = "Operation",
       duration = 2250,
@@ -163,7 +166,7 @@ local GAME_DEFS = {
       usesBattery = true,
     },
 
-    ["BoardGamesAndPuzzlesMod.Risk"] = {
+    [BoardGame.Risk] = {
       default = DEFAULT_GAME_MEDIUM,
       name = "Risk",
       duration = 45000,
@@ -174,7 +177,7 @@ local GAME_DEFS = {
       usesBattery = false,
     },
 
-    ["BoardGamesAndPuzzlesMod.Scrabble"] = {
+    [BoardGame.Scrabble] = {
       default = DEFAULT_GAME_HARD,
       name = "Scrabble",
       duration = 19690,
@@ -185,7 +188,7 @@ local GAME_DEFS = {
       usesBattery = false,
     },
 
-    ["BoardGamesAndPuzzlesMod.SnakesAndLadders"] = {
+    [BoardGame.SnakesAndLadders] = {
       default = DEFAULT_GAME_BASIC,
       name = "Snakes and Ladders",
       duration = 11250,
@@ -196,7 +199,7 @@ local GAME_DEFS = {
       usesBattery = false,
     },
 
-    ["BoardGamesAndPuzzlesMod.Sorry"] = {
+    [BoardGame.Sorry] = {
       default = DEFAULT_GAME_EASY,
       name = "Sorry",
       duration = 11250,
@@ -207,7 +210,7 @@ local GAME_DEFS = {
       usesBattery = false,
     },
 
-    ["BoardGamesAndPuzzlesMod.TheGameOfLife"] = {
+    [BoardGame.TheGameOfLife] = {
       default = DEFAULT_GAME_MEDIUM,
       name = "The Game of Life",
       duration = 16875,
@@ -218,7 +221,7 @@ local GAME_DEFS = {
       usesBattery = false,
     },
 
-    ["BoardGamesAndPuzzlesMod.TrivialPursuit"] = {
+    [BoardGame.TrivialPursuit] = {
       default = DEFAULT_GAME_HARD,
       name = "Trivial Pursuit",
       duration = 19690,
@@ -229,7 +232,7 @@ local GAME_DEFS = {
       usesBattery = false,
     },
 
-    ["BoardGamesAndPuzzlesMod.Trouble"] = {
+    [BoardGame.Trouble] = {
       default = DEFAULT_GAME_BASIC,
       name = "Trouble",
       duration = 11250,
@@ -240,7 +243,7 @@ local GAME_DEFS = {
       usesBattery = false,
     },
 
-    ["BoardGamesAndPuzzlesMod.YahtzeeGame"] = {
+    [BoardGame.YahtzeeGame] = {
       default = DEFAULT_GAME_EASY,
       name = "Yahtzee",
       duration = 5060,

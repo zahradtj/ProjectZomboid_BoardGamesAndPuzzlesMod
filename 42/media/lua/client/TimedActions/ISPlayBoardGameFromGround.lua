@@ -1,4 +1,6 @@
 require "TimedActions/ISBaseTimedAction"
+require "helpers/BoardGame_Thoughts"
+require "BoardGamesAndPuzzlesMod_Operation"
 
 ISPlayBoardGameFromGround = ISBaseTimedAction:derive("ISPlayBoardGameFromGround")
 
@@ -23,11 +25,10 @@ function ISPlayBoardGameFromGround:start()
         self.character:faceLocation(sq:getX(), sq:getY())
     end
 
-    -- Optional: set an animation variable / play a sound / etc.
-    -- self:setActionAnim("Bob_IdleRollDice") -- or something that looks okay
-    -- self:setActionAnim("Bob_IdleCube") -- or something that looks okay
     self:setActionAnim("Loot")
 	self.character:SetVariable("LootPosition", "Mid")
+    -- next thought 2–6 seconds from now
+    self.nextThoughtMs = getTimestampMs() + ZombRand(2000, 6001)
 end
 
 function ISPlayBoardGameFromGround:update()
@@ -36,6 +37,23 @@ function ISPlayBoardGameFromGround:update()
     if sq then
         self.character:faceLocation(sq:getX(), sq:getY())
     end
+
+    -- Thoughts
+    local now = getTimestampMs()
+    if not self.nextThoughtMs or now < self.nextThoughtMs then return end
+
+    local fullType = self.item and self.item:getFullType()
+
+    if ZombRand(100) < 35 then
+        BoardGame_Thoughts.show(self.character, fullType, "neutral")
+    end
+
+    -- schedule next thought 4–10 seconds out
+    self.nextThoughtMs = now + ZombRand(4000, 10001)
+end
+
+function ISPlayBoardGameFromGround:stop()
+    ISBaseTimedAction.stop(self)
 end
 
 function ISPlayBoardGameFromGround:perform()
@@ -49,8 +67,17 @@ function ISPlayBoardGameFromGround:perform()
         print("[BGP] moodles after play - bored: ", stats:get(CharacterStat.BOREDOM), " stress: ", stats:get(CharacterStat.STRESS), " unhappy: ", stats:get(CharacterStat.UNHAPPINESS))
     end
 
-    -- Example: degrade battery/condition/etc. without picking it up:
-    -- self.invItem:setCondition(self.invItem:getCondition() - 1)
+
+    if BoardGamesAndPuzzlesMod_Operation.isOperationItem(self.item) then
+        BoardGamesAndPuzzlesMod_Operation.doPlayOperation(self.character, self.item)
+    else
+        local fullType = self.item and self.item:getFullType()
+        if ZombRand(100) < 50 then
+            BoardGame_Thoughts.show(self.character, fullType, "success")
+        else
+            BoardGame_Thoughts.show(self.character, fullType, "failure")
+        end
+    end
 
     ISBaseTimedAction.perform(self)
 end

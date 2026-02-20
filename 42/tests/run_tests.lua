@@ -28,13 +28,12 @@ end
 
 reset_test_globals()
 
+add_path(root)
 
 -- PZ loads from media/lua/(shared|client|server)
 add_path(root .. "/media/lua/shared")
 add_path(root .. "/media/lua/client")
 add_path(root .. "/media/lua/server")
-
-add_path(root .. "/tests")
 
 -- LuaUnit vendored here
 add_path(root .. "/tests/libs")

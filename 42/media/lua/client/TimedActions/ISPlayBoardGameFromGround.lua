@@ -1,6 +1,9 @@
 require "TimedActions/ISBaseTimedAction"
-require "helpers/BoardGame_Thoughts"
-require "BoardGamesAndPuzzlesMod_Operation"
+
+local ISBaseTimedAction = _G.ISBaseTimedAction
+local BoardGame_Thoughts = require "helpers/BoardGame_Thoughts"
+local Operation = require "BoardGamesAndPuzzlesMod_Operation"
+
 
 ISPlayBoardGameFromGround = ISBaseTimedAction:derive("ISPlayBoardGameFromGround")
 
@@ -28,7 +31,7 @@ function ISPlayBoardGameFromGround:start()
     self:setActionAnim("Loot")
 	self.character:SetVariable("LootPosition", "Mid")
     -- next thought 2–6 seconds from now
-    self.nextThoughtMs = getTimestampMs() + ZombRand(2000, 6001)
+    self.nextThoughtMs = _G.getTimestampMs() + _G.ZombRand(2000, 6001)
 end
 
 function ISPlayBoardGameFromGround:update()
@@ -39,17 +42,17 @@ function ISPlayBoardGameFromGround:update()
     end
 
     -- Thoughts
-    local now = getTimestampMs()
+    local now = _G.getTimestampMs()
     if not self.nextThoughtMs or now < self.nextThoughtMs then return end
 
     local fullType = self.item and self.item:getFullType()
 
-    if ZombRand(100) < 35 then
+    if _G.ZombRand(100) < 35 then
         BoardGame_Thoughts.show(self.character, fullType, "neutral")
     end
 
     -- schedule next thought 4–10 seconds out
-    self.nextThoughtMs = now + ZombRand(4000, 10001)
+    self.nextThoughtMs = now + _G.ZombRand(4000, 10001)
 end
 
 function ISPlayBoardGameFromGround:stop()
@@ -60,19 +63,17 @@ function ISPlayBoardGameFromGround:perform()
     local stats = self.character:getStats()
 
     if stats and stats.remove then
-        print("[BGP] moodles before play - bored: ", stats:get(CharacterStat.BOREDOM), " stress: ", stats:get(CharacterStat.STRESS), " unhappy: ", stats:get(CharacterStat.UNHAPPINESS))
         stats:remove(CharacterStat.BOREDOM, self.boredomReduce)
         stats:remove(CharacterStat.STRESS, self.stressReduce)
         stats:remove(CharacterStat.UNHAPPINESS, self.unhappyReduce)
-        print("[BGP] moodles after play - bored: ", stats:get(CharacterStat.BOREDOM), " stress: ", stats:get(CharacterStat.STRESS), " unhappy: ", stats:get(CharacterStat.UNHAPPINESS))
     end
 
 
-    if BoardGamesAndPuzzlesMod_Operation.isOperationItem(self.item) then
-        BoardGamesAndPuzzlesMod_Operation.doPlayOperation(self.character, self.item)
+    if Operation.isOperationItem(self.item) then
+        Operation.doPlayOperation(self.character, self.item)
     else
         local fullType = self.item and self.item:getFullType()
-        if ZombRand(100) < 50 then
+        if _G.ZombRand(100) < 50 then
             BoardGame_Thoughts.show(self.character, fullType, "success")
         else
             BoardGame_Thoughts.show(self.character, fullType, "failure")
@@ -95,3 +96,5 @@ function ISPlayBoardGameFromGround:new(character, worldItemObj, invItem, duratio
     o.stressReduce = stressReduce or 0.05
     return o
 end
+
+return ISPlayBoardGameFromGround

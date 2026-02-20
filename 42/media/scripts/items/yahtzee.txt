@@ -5,7 +5,7 @@ module BoardGamesAndPuzzlesMod
         Base
     }
 
-    model YahtzeeGame
+    model Yahtzee
     {
         mesh = WorldItems/Cylinder,
         texture = box/box_Yahtzee,
@@ -27,6 +27,6 @@ module BoardGamesAndPuzzlesMod
         UseWhileEquipped = False,
         UseWhileUnequipped = True,
         Tooltip = "Dice and scorecards. Quick to play and easy to learn.",
-        WorldStaticModel = YahtzeeGame,
+        WorldStaticModel = Yahtzee,
     }
 }

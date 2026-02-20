@@ -5,7 +5,7 @@ module BoardGamesAndPuzzlesMod
         Base
     }
 
-    model ChessSet
+    model Chess
     {
         mesh = WorldItems/SmallBox,
         texture = box/box_Chess,
@@ -18,7 +18,7 @@ module BoardGamesAndPuzzlesMod
         ItemType = base:normal,
         DisplayName = Chess Set,
         DisplayCategory = Entertainment,
-        Icon = ChessSet,
+        Icon = Chess,
         Weight = 1.5,
         LootCategory = Other,
         SubCategory = BoardGame,
@@ -27,6 +27,6 @@ module BoardGamesAndPuzzlesMod
         UseWhileEquipped = False,
         UseWhileUnequipped = True,
         Tooltip = "A classic strategy game for two players. Requires focus and patience.",
-        WorldStaticModel = ChessSet,
+        WorldStaticModel = Chess,
     }
 }

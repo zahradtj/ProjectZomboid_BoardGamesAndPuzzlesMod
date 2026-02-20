@@ -569,3 +569,5 @@ function BoardGame_Thoughts.show(player, gameKey, mood)
 
     player:addLineChatElement(line, r, g, b)
 end
+
+return BoardGame_Thoughts

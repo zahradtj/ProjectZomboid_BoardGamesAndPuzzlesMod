@@ -18,6 +18,7 @@ jobs:
           sudo apt-get install -y lua5.4
 
       - name: Run tests
+        working-directory: 42
         run: |
-          lua5.4 42/tests/run_tests.lua 42
+          lua5.4 tests/run_tests.lua
 

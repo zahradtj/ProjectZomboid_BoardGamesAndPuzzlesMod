@@ -1,3 +1,5 @@
+[![Lua tests](https://github.com/zahradtj/ProjectZomboid_BoardGamesAndPuzzlesMod/actions/workflows/lua-tests.yml/badge.svg?branch=main)](https://github.com/zahradtj/ProjectZomboid_BoardGamesAndPuzzlesMod/actions/workflows/lua-tests.yml)
+
 # ProjectZomboid_BoardGamesAndPuzzlesMod
 This is a mod for the game Project Zomboid.  It is being developed for build 42.
 

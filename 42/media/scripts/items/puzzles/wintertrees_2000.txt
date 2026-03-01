@@ -1,0 +1,32 @@
+module BoardGamesAndPuzzlesMod
+{
+    imports
+    {
+        Base
+    }
+
+    model WinterTrees2000
+    {
+        mesh = WorldItems/SmallBox,
+        texture = box/2000_puzzle_box_wintertrees,
+        scale = 0.6,
+    }
+
+    item Puzzle2000_WinterTrees
+    {
+        Type = Normal,
+        ItemType = base:normal,
+        DisplayName = Winter Trees Puzzle (2000 piece),
+        DisplayCategory = Entertainment,
+        Icon = Puzzle_2000,
+        Weight = 2.2,
+        LootCategory = Other,
+        SubCategory = Puzzle,
+        CanSpawnAsLoot = True,
+        RequiresEquippedBothHands = False,
+        UseWhileEquipped = False,
+        UseWhileUnequipped = True,
+        Tooltip = "Two thousand pieces of a winter tree scene. This will take a long time.",
+        WorldStaticModel = WinterTrees2000,
+    }
+}

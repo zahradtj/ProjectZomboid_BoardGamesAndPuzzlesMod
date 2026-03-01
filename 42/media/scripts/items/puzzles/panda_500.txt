@@ -1,0 +1,32 @@
+module BoardGamesAndPuzzlesMod
+{
+    imports
+    {
+        Base
+    }
+
+    model Panda500
+    {
+        mesh = WorldItems/puzzle_box_medium,
+        texture = box/500_puzzle_box_panda,
+        scale = 0.0035,
+    }
+
+    item Puzzle500_Panda
+    {
+        Type = Normal,
+        ItemType = base:normal,
+        DisplayName = Panda Puzzle (500 piece),
+        DisplayCategory = Entertainment,
+        Icon = Puzzle_500,
+        Weight = 1.2,
+        LootCategory = Other,
+        SubCategory = Puzzle,
+        CanSpawnAsLoot = True,
+        RequiresEquippedBothHands = False,
+        UseWhileEquipped = False,
+        UseWhileUnequipped = True,
+        Tooltip = "A 500-piece puzzle of a panda. Takes some patience but it’s manageable.",
+        WorldStaticModel = Panda500,
+    }
+}

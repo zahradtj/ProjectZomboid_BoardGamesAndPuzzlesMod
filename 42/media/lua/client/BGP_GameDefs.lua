@@ -123,6 +123,17 @@ local GAME_DEFS = {
       usesBattery = false,
     },
 
+    [BoardGame.MakeshiftStrategy] = {
+      default = DEFAULT_GAME_MEDIUM,
+      name = "Makeshift Strategy Game",
+      duration = 45000,
+      boredomReduce = 15,
+      unhappyReduce = 8,
+      stressReduce = 8,
+      clumsyImpacted = true,
+      usesBattery = false,
+    },
+
     [BoardGame.Mastermind] = {
       default = DEFAULT_GAME_EASY,
       name = "Mastermind",

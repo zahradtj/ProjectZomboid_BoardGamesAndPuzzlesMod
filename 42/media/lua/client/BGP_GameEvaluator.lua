@@ -13,7 +13,7 @@ local M = {}
 --   nil (not a boardgame item)
 --   { ok=false, label=string, tooltip=table<string> }
 --   { ok=true, label=string, duration=number, boredom=number, unhappy=number, stress=number, gameDef=table }
-function M.evaluate(playerObj, item)
+function M.evaluate(playerObj, item, worldItemObj)
     if not playerObj or not item or not item.getFullType then return nil end
 
     local fullType = item:getFullType()
@@ -36,6 +36,10 @@ function M.evaluate(playerObj, item)
 
     -- Requirements
     local missing = {}
+
+    if worldItemObj and not Req.isCharacterNearWorldItem(playerObj, worldItemObj) then
+        table.insert(missing, "- Too far away.")
+    end
 
     if not Req.hasNearbySurface(playerObj, 1) then
         table.insert(missing, "- Requires a nearby surface (table).")

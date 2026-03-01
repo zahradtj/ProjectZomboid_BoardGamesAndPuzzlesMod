@@ -1,0 +1,32 @@
+module BoardGamesAndPuzzlesMod
+{
+    imports
+    {
+        Base
+    }
+
+    model MakeshiftStrategy
+    {
+        mesh = WorldItems/SmallBox,
+        texture = box/box_Makeshift,
+        scale = 0.6,
+    }
+
+    item MakeshiftStrategy
+    {
+        Type = Normal,
+        ItemType = base:normal,
+        DisplayName = Makeshift Strategy Game,
+        DisplayCategory = Entertainment,
+        Icon = Makeshift,
+        Weight = 1.5,
+        LootCategory = Other,
+        SubCategory = BoardGame,
+        CanSpawnAsLoot = True,
+        RequiresEquippedBothHands = False,
+        UseWhileEquipped = False,
+        UseWhileUnequipped = True,
+        Tooltip = "A homemade strategy game. It's crude but helps pass the time",
+        WorldStaticModel = MakeshiftStrategy,
+    }
+}

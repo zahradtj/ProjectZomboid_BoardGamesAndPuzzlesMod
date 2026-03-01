@@ -4,17 +4,16 @@ local lu = require("luaunit")
 -- Test doubles / stubs
 -- -------------------------------------------------------------------
 
--- CharacterTrait constants used by evaluator
+-- Use unique tokens (closer to userdata than strings)
 _G.CharacterTrait = {
-    ILLITERATE = "ILLITERATE",
-    SLOW_READER = "SLOW_READER",
-    FAST_READER = "FAST_READER",
-    ALL_THUMBS = "ALL_THUMBS",
-    CLUMSY = "CLUMSY",
-    DEXTROUS = "DEXTROUS",
+    ILLITERATE   = {},  -- token
+    SLOW_READER  = {},
+    FAST_READER  = {},
+    ALL_THUMBS   = {},
+    CLUMSY       = {},
+    DEXTROUS     = {},
 }
 
--- Helpers to build fake player/item
 local function makePlayer(traits, wearingAwkwardGloves)
     traits = traits or {}
     local traitSet = {}
@@ -32,22 +31,27 @@ local function makeItem(fullType)
     }
 end
 
--- We'll swap these per-test via package.loaded
+local function makeWorldItemObj()
+    return { _fake = true }
+end
+
+-- swap these per-test via package.loaded
 local function installStubs(opts)
     opts = opts or {}
 
     local defs = opts.game_defs or {}
-    local req = opts.req or {}
-    local op = opts.operation or {}
+    local req  = opts.req or {}
+    local op   = opts.operation or {}
 
     package.loaded["BGP_GameDefs"] = { GAME_DEFS = defs }
+
     package.loaded["BGP_Requirements"] = {
         hasNearbySurface = req.hasNearbySurface or function() return true end,
         hasEnoughLight   = req.hasEnoughLight   or function() return true end,
+        isCharacterNearWorldItem = req.isCharacterNearWorldItem or function() return true end,
     }
 
-    -- Your evaluator does `require "BoardGamesAndPuzzlesMod_Operation"` (no parens),
-    -- which still uses package.loaded with that exact key.
+    -- evaluator does `require "BoardGamesAndPuzzlesMod_Operation"`
     package.loaded["BoardGamesAndPuzzlesMod_Operation"] = {
         hasBattery = op.hasBattery or function() return true end,
     }
@@ -102,7 +106,7 @@ function TestBGP_GameEvaluator:testLabelIsPlayPlusNameOnSuccess()
                 stressReduce = 0.5,
                 clumsyImpacted = false,
                 usesBattery = false,
-                default = { illiterateAllowed = true },
+                default = { illiterateAllowed = true, illiterateFailurePercent = 0 },
             }
         }
     })
@@ -125,7 +129,7 @@ function TestBGP_GameEvaluator:testIlliterateBlockedWhenReadingRequired()
                 stressReduce = 10,
                 clumsyImpacted = false,
                 usesBattery = false,
-                default = { illiterateAllowed = false },
+                default = { illiterateAllowed = false, illiterateFailurePercent = 100 },
             }
         }
     })
@@ -153,7 +157,7 @@ function TestBGP_GameEvaluator:testIlliterateAllowedPassesLiteracyGate()
                 stressReduce = 10,
                 clumsyImpacted = false,
                 usesBattery = false,
-                default = { illiterateAllowed = true },
+                default = { illiterateAllowed = true, illiterateFailurePercent = 0 },
             }
         }
     })
@@ -162,6 +166,33 @@ function TestBGP_GameEvaluator:testIlliterateAllowedPassesLiteracyGate()
     local player = makePlayer({ CharacterTrait.ILLITERATE })
     local res = Eval.evaluate(player, makeItem(ft))
     lu.assertTrue(res.ok)
+end
+
+function TestBGP_GameEvaluator:testWorldItemTooFarAddsTooltipLine()
+    local ft = "Mod.Checkers"
+    installStubs({
+        game_defs = {
+            [ft] = {
+                name = "Checkers",
+                duration = 100,
+                boredomReduce = 1,
+                unhappyReduce = 2,
+                stressReduce = 10,
+                clumsyImpacted = false,
+                usesBattery = false,
+                default = { illiterateAllowed = true, illiterateFailurePercent = 0 },
+            }
+        },
+        req = {
+            isCharacterNearWorldItem = function() return false end,
+        }
+    })
+    local Eval = reloadEvaluator()
+
+    local res = Eval.evaluate(makePlayer({}), makeItem(ft), makeWorldItemObj())
+    lu.assertFalse(res.ok)
+    lu.assertEquals(res.tooltip[1], "Cannot play right now:")
+    lu.assertEquals(res.tooltip[2], "- Too far away.")
 end
 
 function TestBGP_GameEvaluator:testMissingSurfaceOrLightProducesDisabledTooltip()
@@ -176,7 +207,7 @@ function TestBGP_GameEvaluator:testMissingSurfaceOrLightProducesDisabledTooltip(
                 stressReduce = 10,
                 clumsyImpacted = false,
                 usesBattery = false,
-                default = { illiterateAllowed = true },
+                default = { illiterateAllowed = true, illiterateFailurePercent = 0 },
             }
         },
         req = {
@@ -205,7 +236,7 @@ function TestBGP_GameEvaluator:testBatteryRequirementAddsTooltipLine()
                 stressReduce = 10,
                 clumsyImpacted = false,
                 usesBattery = true,
-                default = { illiterateAllowed = true },
+                default = { illiterateAllowed = true, illiterateFailurePercent = 0 },
             }
         },
         operation = {
@@ -232,7 +263,7 @@ function TestBGP_GameEvaluator:testSlowReaderIncreasesDurationWhenReadingRequire
                 stressReduce = 10,
                 clumsyImpacted = false,
                 usesBattery = false,
-                default = { illiterateAllowed = false }, -- requires reading
+                default = { illiterateAllowed = false, illiterateFailurePercent = 100 },
             }
         }
     })
@@ -256,7 +287,7 @@ function TestBGP_GameEvaluator:testFastReaderDecreasesDurationWhenReadingRequire
                 stressReduce = 10,
                 clumsyImpacted = false,
                 usesBattery = false,
-                default = { illiterateAllowed = false }, -- requires reading
+                default = { illiterateAllowed = false, illiterateFailurePercent = 100 },
             }
         }
     })
@@ -280,7 +311,7 @@ function TestBGP_GameEvaluator:testReaderTraitsDoNotAffectDurationWhenIlliterate
                 stressReduce = 10,
                 clumsyImpacted = false,
                 usesBattery = false,
-                default = { illiterateAllowed = true }, -- not treated as “requires reading”
+                default = { illiterateAllowed = true, illiterateFailurePercent = 0 },
             }
         }
     })
@@ -304,7 +335,7 @@ function TestBGP_GameEvaluator:testClumsyImpactedIncreasesDuration()
                 stressReduce = 10,
                 clumsyImpacted = true,
                 usesBattery = false,
-                default = { illiterateAllowed = true },
+                default = { illiterateAllowed = true, illiterateFailurePercent = 0 },
             }
         }
     })
@@ -327,7 +358,7 @@ function TestBGP_GameEvaluator:testAllThumbsOrAwkwardGlovesAlsoIncreaseDuration(
                 stressReduce = 10,
                 clumsyImpacted = true,
                 usesBattery = false,
-                default = { illiterateAllowed = true },
+                default = { illiterateAllowed = true, illiterateFailurePercent = 0 },
             }
         }
     })
@@ -352,7 +383,7 @@ function TestBGP_GameEvaluator:testDextrousDecreasesDurationWhenClumsyImpacted()
                 stressReduce = 10,
                 clumsyImpacted = true,
                 usesBattery = false,
-                default = { illiterateAllowed = true },
+                default = { illiterateAllowed = true, illiterateFailurePercent = 0 },
             }
         }
     })
@@ -371,10 +402,10 @@ function TestBGP_GameEvaluator:testStressReduceNormalizedWhenPercentStyle()
                 duration = 100,
                 boredomReduce = 1,
                 unhappyReduce = 2,
-                stressReduce = 12, -- percent style
+                stressReduce = 12,
                 clumsyImpacted = false,
                 usesBattery = false,
-                default = { illiterateAllowed = true },
+                default = { illiterateAllowed = true, illiterateFailurePercent = 0 },
             }
         }
     })
@@ -397,7 +428,7 @@ function TestBGP_GameEvaluator:testStressReduceDefaultsToPointZeroEightWhenNil()
                 stressReduce = nil,
                 clumsyImpacted = false,
                 usesBattery = false,
-                default = { illiterateAllowed = true },
+                default = { illiterateAllowed = true, illiterateFailurePercent = 0 },
             }
         }
     })
@@ -420,7 +451,7 @@ function TestBGP_GameEvaluator:testPassesThroughMoodValues()
                 stressReduce = 0.2,
                 clumsyImpacted = false,
                 usesBattery = false,
-                default = { illiterateAllowed = true },
+                default = { illiterateAllowed = true, illiterateFailurePercent = 0 },
             }
         }
     })

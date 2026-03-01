@@ -1,0 +1,32 @@
+module BoardGamesAndPuzzlesMod
+{
+    imports
+    {
+        Base
+    }
+
+    model Space20
+    {
+        mesh = WorldItems/puzzle_box_small,
+        texture = box/20_puzzle_box_space,
+        scale = 0.0015,
+    }
+
+    item Puzzle20_Space
+    {
+        Type = Normal,
+        ItemType = base:normal,
+        DisplayName = Space Puzzle (20 piece) - 0%,
+        DisplayCategory = Entertainment,
+        Icon = Puzzle_20,
+        Weight = 0.8,
+        LootCategory = Other,
+        SubCategory = Puzzle,
+        CanSpawnAsLoot = True,
+        RequiresEquippedBothHands = False,
+        UseWhileEquipped = False,
+        UseWhileUnequipped = True,
+        Tooltip = "A small children's puzzle of rockets and other space items.",
+        WorldStaticModel = Space20,
+    }
+}

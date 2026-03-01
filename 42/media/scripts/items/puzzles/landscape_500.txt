@@ -1,0 +1,32 @@
+module BoardGamesAndPuzzlesMod
+{
+    imports
+    {
+        Base
+    }
+
+    model Landscape500
+    {
+        mesh = WorldItems/puzzle_box_medium,
+        texture = box/500_puzzle_box_landscape,
+        scale = 0.0035,
+    }
+
+    item Puzzle500_Landscape
+    {
+        Type = Normal,
+        ItemType = base:normal,
+        DisplayName = Landscape Puzzle (500 piece),
+        DisplayCategory = Entertainment,
+        Icon = Puzzle_500,
+        Weight = 1.2,
+        LootCategory = Other,
+        SubCategory = Puzzle,
+        CanSpawnAsLoot = True,
+        RequiresEquippedBothHands = False,
+        UseWhileEquipped = False,
+        UseWhileUnequipped = True,
+        Tooltip = "A 500-piece puzzle of a landscape scene. Takes some patience but it’s manageable.",
+        WorldStaticModel = Landscape500,
+    }
+}

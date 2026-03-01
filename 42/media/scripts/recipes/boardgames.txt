@@ -1,0 +1,151 @@
+module BoardGamesAndPuzzlesMod
+{
+    imports
+    {
+        Base
+    }
+
+    craftRecipe Assemble Checkers Game
+    {
+        timedAction = Making,
+        time = 45,
+        Tags = InHandCraft;AnySurfaceCraft,
+        NeedToBeLearn = false,
+
+        inputs
+        {
+            item 1 [Base.CheckerBoard],
+            item 12 [Base.GamePieceRed],
+            item 12 [Base.GamePieceBlack],
+        }
+
+        outputs
+        {
+            item 1 BoardGamesAndPuzzlesMod.Checkers,
+        }
+    }
+
+    craftRecipe Make Makeshift Checkers Game
+    {
+        timedAction = Making,
+        time = 45,
+        Tags = InHandCraft;AnySurfaceCraft,
+        NeedToBeLearn = false,
+
+        inputs
+        {
+            item 2 [base.GraphPaper;base.SheetPaper2],
+            item 1 tags[base:write] mode:keep,
+            item 12 [Base.GamePieceRed],
+            item 12 [Base.GamePieceBlack],
+        }
+
+        outputs
+        {
+            item 1 BoardGamesAndPuzzlesMod.Checkers,
+        }
+    }
+
+    craftRecipe Assemble Chess Game
+    {
+        timedAction = Making,
+        time = 45,
+        Tags = InHandCraft;AnySurfaceCraft,
+        NeedToBeLearn = false,
+
+        inputs
+        {
+            item 1 [Base.CheckerBoard],
+            item 16 [Base.ChessWhite],
+            item 16 [Base.ChessBlack],
+        }
+
+        outputs
+        {
+            item 1 BoardGamesAndPuzzlesMod.ChessSet,
+        }
+    }
+
+    craftRecipe Make Makeshift Chess Game
+    {
+        timedAction = Making,
+        time = 45,
+        Tags = InHandCraft;AnySurfaceCraft,
+        NeedToBeLearn = false,
+
+        inputs
+        {
+            item 2 [base.GraphPaper;base.SheetPaper2],
+            item 1 tags[base:write] mode:keep,
+            item 16 [Base.ChessWhite],
+            item 16 [Base.ChessBlack],
+        }
+
+        outputs
+        {
+            item 1 BoardGamesAndPuzzlesMod.ChessSet,
+        }
+    }
+
+    craftRecipe Assemble Backgammon Game
+    {
+        timedAction = Making,
+        time = 45,
+        Tags = InHandCraft;AnySurfaceCraft,
+        NeedToBeLearn = false,
+
+        inputs
+        {
+            item 1 [Base.BackgammonBoard],
+            item 15 [Base.GamePieceWhite],
+            item 15 [Base.GamePieceBlack],
+        }
+
+        outputs
+        {
+            item 1 BoardGamesAndPuzzlesMod.Backgammon,
+        }
+    }
+
+    craftRecipe Make Makeshift Yahtzee Game
+    {
+        timedAction = Making,
+        time = 45,
+        Tags = InHandCraft;AnySurfaceCraft,
+        NeedToBeLearn = false,
+
+        inputs
+        {
+            item 1 [Base.DrinkingGlass;Base.FountainCup;Base.PlasticCup;Base.GlassTumbler],
+            item 6 [Base.Dice;Base.Dice_Wood;Base.Dice_6;Base.Dice_Bone],
+            item 1 [base.GraphPaper;base.SheetPaper2;base.Notepad;base.Notebook],
+            item 1 tags[base:write] mode:keep,
+        }
+
+        outputs
+        {
+            item 1 BoardGamesAndPuzzlesMod.YahtzeeGame,
+        }
+    }
+
+    craftRecipe Make Makeshift Strategy Game
+    {
+        timedAction = Making,
+        time = 75,
+        Tags = InHandCraft;AnySurfaceCraft,
+        NeedToBeLearn = false,
+
+        inputs
+        {
+            item 1 [base.Map;base.LouisvilleMap1;base.LouisvilleMap2;base.LouisvilleMap3;base.LouisvilleMap4;base.LouisvilleMap5;base.LouisvilleMap6;base.LouisvilleMap7;base.LouisvilleMap8;base.LouisvilleMap9;base.MarchRidgeMap;base.MuldraughMap;base.RiversideMap;base.RosewoodMap;base.WestpointMap],
+            item 10 [Base.GamePieceRed],
+            item 10 [Base.GamePieceWhite],
+            item 10 [Base.ChessBlack],
+        }
+
+        outputs
+        {
+            item 1 BoardGamesAndPuzzlesMod.MakeshiftStrategy,
+        }
+    }
+}

@@ -12,6 +12,7 @@ local BoardGame = {
   Chess              = MOD .. ".Chess",
   Clue               = MOD .. ".Clue",
   Go                 = MOD .. ".Go",
+  MakeshiftStrategy  = MOD .. ".MakeshiftStrategy",
   Mastermind         = MOD .. ".Mastermind",
   Monopoly           = MOD .. ".Monopoly",
   Operation          = MOD .. ".Operation",

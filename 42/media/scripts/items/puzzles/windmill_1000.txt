@@ -1,0 +1,32 @@
+module BoardGamesAndPuzzlesMod
+{
+    imports
+    {
+        Base
+    }
+
+    model Windmill1000
+    {
+        mesh = WorldItems/puzzle_box_medium,
+        texture = box/1000_puzzle_box_windmill,
+        scale = 0.0035,
+    }
+
+    item Puzzle1000_Windmill
+    {
+        Type = Normal,
+        ItemType = base:normal,
+        DisplayName = Windmill Puzzle (1000 piece),
+        DisplayCategory = Entertainment,
+        Icon = Puzzle_1000,
+        Weight = 1.6,
+        LootCategory = Other,
+        SubCategory = Puzzle,
+        CanSpawnAsLoot = True,
+        RequiresEquippedBothHands = False,
+        UseWhileEquipped = False,
+        UseWhileUnequipped = True,
+        Tooltip = "A big 1000-piece puzzle of a windmill. Slow work but it keeps your hands busy.",
+        WorldStaticModel = Windmill1000,
+    }
+}

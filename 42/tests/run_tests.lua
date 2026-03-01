@@ -37,20 +37,40 @@ add_path(root .. "/media/lua/server")
 add_path(root .. "/tests")
 add_path(root .. "/tests/libs")
 
--- If you want: basic stubs for globals some modules might expect
 _G.Events = _G.Events or { OnFillInventoryObjectContextMenu = { Add = function(_) end } }
 _G.ZombRand = _G.ZombRand or function(a, b) return a end  -- deterministic stub
 
 local lu = require("luaunit")
 
-require("tests.spec.test_battery_manager")
-require("tests.spec.test_game_defs")
-require("tests.spec.test_game_evaluator")
-require("tests.spec.test_menu_handlers")
-require("tests.spec.test_operation")
-require("tests.spec.test_play_boardgame_from_ground")
-require("tests.spec.test_play_boardgame_from_inventory")
-require("tests.spec.test_requirements")
-require("tests.spec.test_tooltips")
+local ok_lfs, lfs = pcall(require, "lfs")
+
+local function require_all_tests()
+  local specDir = "tests/spec"
+
+  if ok_lfs and lfs then
+    for file in lfs.dir(specDir) do
+      -- load only test_*.lua
+      if file:match("^test_.*%.lua$") then
+        local mod = ("tests.spec.%s"):format(file:gsub("%.lua$", ""))
+        require(mod)
+      end
+    end
+    return
+  end
+
+  -- Fallback (no lfs): use io.popen + ls (linux/mac)
+  local p = io.popen("ls " .. specDir)
+  if not p then error("Could not list " .. specDir .. " (need lfs or io.popen)") end
+
+  for file in p:lines() do
+    if file:match("^test_.*%.lua$") then
+      local mod = ("tests.spec.%s"):format(file:gsub("%.lua$", ""))
+      require(mod)
+    end
+  end
+  p:close()
+end
+
+require_all_tests()
 
 os.exit(lu.LuaUnit.run())

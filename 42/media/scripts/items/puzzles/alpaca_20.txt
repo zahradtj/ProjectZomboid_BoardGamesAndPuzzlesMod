@@ -1,0 +1,32 @@
+module BoardGamesAndPuzzlesMod
+{
+    imports
+    {
+        Base
+    }
+
+    model Alpaca20
+    {
+        mesh = WorldItems/puzzle_box_small,
+        texture = box/20_puzzle_box_alpaca,
+        scale = 0.0015,
+    }
+
+    item Puzzle20_Alpaca
+    {
+        Type = Normal,
+        ItemType = base:normal,
+        DisplayName = Alpaca Puzzle (20 piece),
+        DisplayCategory = Entertainment,
+        Icon = Puzzle_20,
+        Weight = 0.8,
+        LootCategory = Other,
+        SubCategory = Puzzle,
+        CanSpawnAsLoot = True,
+        RequiresEquippedBothHands = False,
+        UseWhileEquipped = False,
+        UseWhileUnequipped = True,
+        Tooltip = "A small children's puzzle of an alpaca.",
+        WorldStaticModel = Alpaca20,
+    }
+}

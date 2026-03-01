@@ -1,0 +1,32 @@
+module BoardGamesAndPuzzlesMod
+{
+    imports
+    {
+        Base
+    }
+
+    model Puppy20
+    {
+        mesh = WorldItems/puzzle_box_small,
+        texture = box/20_puzzle_box_puppy,
+        scale = 0.0015,
+    }
+
+    item Puzzle20_Puppy
+    {
+        Type = Normal,
+        ItemType = base:normal,
+        DisplayName = Puppy Puzzle (20 piece),
+        DisplayCategory = Entertainment,
+        Icon = Puzzle_20,
+        Weight = 0.8,
+        LootCategory = Other,
+        SubCategory = Puzzle,
+        CanSpawnAsLoot = True,
+        RequiresEquippedBothHands = False,
+        UseWhileEquipped = False,
+        UseWhileUnequipped = True,
+        Tooltip = "A small children's puzzle of a puppy.",
+        WorldStaticModel = Puppy20,
+    }
+}

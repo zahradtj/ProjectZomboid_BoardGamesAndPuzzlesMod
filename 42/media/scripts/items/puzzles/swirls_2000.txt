@@ -1,0 +1,32 @@
+module BoardGamesAndPuzzlesMod
+{
+    imports
+    {
+        Base
+    }
+
+    model Swirls2000
+    {
+        mesh = WorldItems/SmallBox,
+        texture = box/2000_puzzle_box_swirls,
+        scale = 0.6,
+    }
+
+    item Puzzle2000_Swirls
+    {
+        Type = Normal,
+        ItemType = base:normal,
+        DisplayName = Swirls Puzzle (2000 piece),
+        DisplayCategory = Entertainment,
+        Icon = Puzzle_1000,
+        Weight = 2.2,
+        LootCategory = Other,
+        SubCategory = Puzzle,
+        CanSpawnAsLoot = True,
+        RequiresEquippedBothHands = False,
+        UseWhileEquipped = False,
+        UseWhileUnequipped = True,
+        Tooltip = "Two thousand pieces of some geometric swirls. This will take a long time.",
+        WorldStaticModel = Swirls2000,
+    }
+}

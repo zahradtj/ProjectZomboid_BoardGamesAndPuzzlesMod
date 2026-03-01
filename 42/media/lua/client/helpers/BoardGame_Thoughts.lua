@@ -247,6 +247,33 @@ BoardGame_Thoughts.lines = {
         },
     },
 
+    [BoardGame.MakeshiftStrategy] = {
+        neutral = {
+            "Old map. New lies. Same hunger.",
+            "Push pins on paper. Blood in the margins.",
+            "A town I’ll never see again, drawn like it still exists.",
+            "Routes, choke points… like I’ve got choices.",
+            "I mark the safe roads. Then I remember there aren’t any.",
+            "Strategy’s just planning what you’ll lose first.",
+        },
+        success = {
+            "Held the line. Even if it’s only ink.",
+            "Good moves. Clean routes. No surprises.",
+            "I boxed it in. Made it stop.",
+            "For once, the plan didn’t fall apart.",
+            "I kept my pieces alive. That’s a win.",
+            "Quiet victory. The kind you can swallow.",
+        },
+        failure = {
+            "Ambushed. Outflanked. Same old story.",
+            "I drew a safe path and walked into a trap.",
+            "Lost ground fast. Like panic spreads.",
+            "The plan collapsed the moment it mattered.",
+            "Too many threats. Not enough hands.",
+            "Defeat on paper still stings like real loss.",
+        },
+    },
+
     [BoardGame.Mastermind] = {
         neutral = {
             "Test. Eliminate. Keep going.",

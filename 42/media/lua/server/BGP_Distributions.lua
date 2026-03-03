@@ -304,5 +304,3 @@ injectBaseline()
 injectBoosts()
 injectSpecialCases()
 injectDistTables()
-
-print("[BGP] Board games + puzzles distributions injected.")

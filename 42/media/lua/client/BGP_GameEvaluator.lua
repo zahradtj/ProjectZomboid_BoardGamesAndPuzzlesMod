@@ -2,12 +2,37 @@
 
 local GameDefs = require("BGP_GameDefs")
 local Req = require("BGP_Requirements")
+local CompFuns = require("BGP_CompatFuncs")
 
 local Operation = require "BoardGamesAndPuzzlesMod_Operation"
 
 local GAME_DEFS = GameDefs.GAME_DEFS
 
 local M = {}
+
+-- Define strings for version 42.12 and lower
+local ALL_THUMBS
+local CLUMSY
+local DEXTROUS
+local FAST_READER
+local ILLITERATE
+local SLOW_READER
+
+if CharacterTrait then
+    ALL_THUMBS = CharacterTrait.ALL_THUMBS
+    CLUMSY = CharacterTrait.CLUMSY
+    DEXTROUS = CharacterTrait.DEXTROUS
+    FAST_READER = CharacterTrait.FAST_READER
+    ILLITERATE = CharacterTrait.ILLITERATE
+    SLOW_READER = CharacterTrait.SLOW_READER
+else
+    ALL_THUMBS = "AllThumbs"
+    CLUMSY = "Clumsy"
+    DEXTROUS = "Dextrous"
+    FAST_READER = "FastReader"
+    ILLITERATE = "Illiterate"
+    SLOW_READER = "SlowReader"
+end
 
 -- Returns:
 --   nil (not a boardgame item)
@@ -25,7 +50,7 @@ function M.evaluate(playerObj, item, worldItemObj)
     local label = "Play " .. gameDef.name
 
     -- Literacy gating
-    if playerObj:hasTrait(CharacterTrait.ILLITERATE) and not gameDef.default.illiterateAllowed then
+    if CompFuns.playerHasTrait(playerObj, ILLITERATE) and not gameDef.default.illiterateAllowed then
         return {
             ok = false,
             label = label,
@@ -62,20 +87,20 @@ function M.evaluate(playerObj, item, worldItemObj)
     local duration = gameDef.duration
 
     if not gameDef.default.illiterateAllowed then
-        if playerObj:hasTrait(CharacterTrait.SLOW_READER) then
+        if CompFuns.playerHasTrait(playerObj, SLOW_READER) then
             duration = math.floor(duration * 1.5)
-        elseif playerObj:hasTrait(CharacterTrait.FAST_READER) then
+        elseif CompFuns.playerHasTrait(playerObj, FAST_READER) then
             duration = math.floor(duration * 0.5)
         end
     end
 
     if gameDef.clumsyImpacted then
-        if playerObj:hasTrait(CharacterTrait.ALL_THUMBS)
-            or playerObj:hasTrait(CharacterTrait.CLUMSY)
+        if CompFuns.playerHasTrait(playerObj, ALL_THUMBS)
+            or CompFuns.playerHasTrait(playerObj, CLUMSY)
             or playerObj:isWearingAwkwardGloves()
         then
             duration = math.floor(duration * 1.25)
-        elseif playerObj:hasTrait(CharacterTrait.DEXTROUS) then
+        elseif CompFuns.playerHasTrait(playerObj, DEXTROUS) then
             duration = math.floor(duration * 0.75)
         end
     end

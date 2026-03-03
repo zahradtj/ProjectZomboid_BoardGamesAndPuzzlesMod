@@ -4,6 +4,22 @@ local Core = {}
 local Puzzles = require("BGP_Puzzles")
 local Req = require("BGP_Requirements")
 local PM = require("helpers/Puzzle_ProgressManager")
+local CompFuns = require("BGP_CompatFuncs")
+
+-- Define strings for version 42.12 and lower
+local ALL_THUMBS
+local CLUMSY
+local DEXTROUS
+
+if CharacterTrait then
+    ALL_THUMBS = CharacterTrait.ALL_THUMBS
+    CLUMSY = CharacterTrait.CLUMSY
+    DEXTROUS = CharacterTrait.DEXTROUS
+else
+    ALL_THUMBS = "AllThumbs"
+    CLUMSY = "Clumsy"
+    DEXTROUS = "Dextrous"
+end
 
 -- ----------------------------
 -- Helpers
@@ -62,10 +78,6 @@ local function formatPieces(n)
     n = tonumber(n) or 0
     if n <= 0 then return "Unknown Piece" end
     return tostring(n) .. " Piece"
-end
-
-local function hasTrait(playerObj, traitUserdata)
-    return playerObj and traitUserdata and playerObj.hasTrait and playerObj:hasTrait(traitUserdata)
 end
 
 function Core.syncItemModData(item)
@@ -166,11 +178,11 @@ function Core.getWorkTuning(playerObj, item)
         local failChancePercent = 0
     if playerObj then
         -- Build 42 uses CharacterTrait userdata, not strings
-        if hasTrait(playerObj, CharacterTrait.ALL_THUMBS) or hasTrait(playerObj, CharacterTrait.CLUMSY) then
+        if CompFuns.playerHasTrait(playerObj, ALL_THUMBS) or CompFuns.playerHasTrait(playerObj, CLUMSY) then
             failChancePercent = failChancePercent + 10
         end
 
-        if hasTrait(playerObj, CharacterTrait.DEXTROUS) then
+        if CompFuns.playerHasTrait(playerObj, DEXTROUS) then
             failChancePercent = math.max(0, failChancePercent - 5)
         end
 

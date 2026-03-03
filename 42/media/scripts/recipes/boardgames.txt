@@ -35,7 +35,7 @@ module BoardGamesAndPuzzlesMod
         inputs
         {
             item 2 [base.GraphPaper;base.SheetPaper2],
-            item 1 tags[base:write] mode:keep,
+            item 1 [base.Pen;base.Pencil;base.RedPen;base.BluePen;base.GreenPen;base.MarkerBlack;base.MarkerRed;base.MarkerGreen;base.MarkerBlue;] mode:keep,
             item 12 [Base.GamePieceRed],
             item 12 [Base.GamePieceBlack],
         }
@@ -76,7 +76,7 @@ module BoardGamesAndPuzzlesMod
         inputs
         {
             item 2 [base.GraphPaper;base.SheetPaper2],
-            item 1 tags[base:write] mode:keep,
+            item 1 [base.Pen;base.Pencil;base.RedPen;base.BluePen;base.GreenPen;base.MarkerBlack;base.MarkerRed;base.MarkerGreen;base.MarkerBlue;] mode:keep,
             item 16 [Base.ChessWhite],
             item 16 [Base.ChessBlack],
         }
@@ -119,7 +119,7 @@ module BoardGamesAndPuzzlesMod
             item 1 [Base.DrinkingGlass;Base.FountainCup;Base.PlasticCup;Base.GlassTumbler],
             item 6 [Base.Dice;Base.Dice_Wood;Base.Dice_6;Base.Dice_Bone],
             item 1 [base.GraphPaper;base.SheetPaper2;base.Notepad;base.Notebook],
-            item 1 tags[base:write] mode:keep,
+            item 1 [base.Pen;base.Pencil;base.RedPen;base.BluePen;base.GreenPen;base.MarkerBlack;base.MarkerRed;base.MarkerGreen;base.MarkerBlue;] mode:keep,
         }
 
         outputs

@@ -583,9 +583,7 @@ end
 
 -- mood: "neutral"|"success"|"failure"
 function BoardGame_Thoughts.show(player, gameKey, mood)
-    print("BGP - show thought")
     local line = BoardGame_Thoughts.pick(gameKey, mood)
-    print("BGP - line: ", line)
     if not line then return end
 
     -- colors (0..1 floats)

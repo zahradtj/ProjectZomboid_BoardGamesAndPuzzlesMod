@@ -1,7 +1,8 @@
 name=Board Games & Puzzles
 id=BoardGamesAndPuzzlesMod
-description=Adds reusable board games and puzzles you can play to reduce boredom.
+description=Adds reusable board games and puzzles you can play to reduce boredom. (ALPHA)
 poster=poster.png
-icon=
-modversion=0.1.0
+icon=icon.png
+version=0.1.1
+modversion=0.1.1
 author=zahradtj
